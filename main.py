@@ -1,5 +1,5 @@
 import customtkinter
-import os, random, time
+import os, random, time, sys
 from PIL import Image
 from atomjoy.json_file import JsonFile
 
@@ -14,8 +14,8 @@ class ScrollableLabelButtonFrame(customtkinter.CTkScrollableFrame):
     def __init__(self, master, command=None, **kwargs):
         super().__init__(master, **kwargs)
         self.grid_columnconfigure(0, weight=1) # Strech grid columns in frame
-        self.command = command
-        self.radiobutton_variable = customtkinter.StringVar()
+        self.command = command        
+        # self.radiobutton_variable = customtkinter.StringVar()
         self.label_list = []
         self.button_list = []
         self.loadItems()
@@ -84,6 +84,7 @@ class ToplevelWindow(customtkinter.CTkToplevel):
         super().__init__(master, **kwargs)
         self.master = master
         self.command = command
+        # self.radiobutton_variable = customtkinter.StringVar()
         self.title('Add secret')
         self.geometry("480x360")
         self.after(250, lambda: self.iconbitmap('images/icon.ico'))
@@ -144,7 +145,7 @@ class App(customtkinter.CTk):
         self.title("2FA Authentication")
         self.iconbitmap('images/icon.ico')
         self.geometry("480x660")
-        self.resizable(False, True) # width, height
+        self.resizable(True, True) # width, height
         self.grid_rowconfigure(0, weight=1) # Strech grid 1st row horizontalyin in frame
         self.columnconfigure(2, weight=1) # Strech grid 3rd column verticaly in frame        
         self.toplevel_window = None
@@ -194,6 +195,20 @@ class App(customtkinter.CTk):
             self.toplevel_window.focus()  # if window exists focus it
             self.toplevel_window.attributes('-topmost', True)
 
+    def config_toplevel_title(self, title="Title from main window!"):
+        if self.toplevel_window.winfo_exists():
+            self.toplevel_window.title(title)
+            # In toplevel: self.input = StringVar() | IntVar()
+            # self.toplevel_window.input.set(title)
+
+    def fullscreen(self):        
+        # Fullscreen scaling (required before app class obj)
+        # customtkinter.deactivate_automatic_dpi_awareness()
+        # customtkinter.set_window_scaling(1)
+        # Enable
+        self.wm_attributes('-fullscreen', True)        
+        self.bind("<Escape>", lambda x: self.destroy())
+
 if __name__ == "__main__":
     # Theme
     customtkinter.set_default_color_theme("themes/atomjoy.json")
@@ -203,7 +218,11 @@ if __name__ == "__main__":
     customtkinter.set_appearance_mode("dark")
     # customtkinter.set_appearance_mode("light")
 
+    # Required for fullscreen()
+    customtkinter.deactivate_automatic_dpi_awareness()
+    customtkinter.set_window_scaling(1)
+    
     # Run    
-    app = App()        
-    app.update()    
+    app = App()    
+    app.update()
     app.mainloop()
