@@ -1,10 +1,10 @@
-# 2FA Authenticator
+# 2FA Authenticator GUI
 
 Aplikacja generuje kody uwierzytelniania dwuskładnikowego co 30 sekund dla kluczy z pliku json. (Two-factor authentication).
 
 ## Instalacja
 
-Zainstaluj pyton 3.12
+Zainstaluj pyton 3.12 <https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe>
 
 ```sh
 # Install modules
