@@ -109,3 +109,14 @@ python3 main.py
 # Deactivate venv if no more needed
 deactivate
 ```
+
+### Bash script run.sh
+
+```sh
+#!/bin/bash
+
+# Run script in virtual env
+source .venv/bin/activate
+python3 main.py
+deactivate
+```
