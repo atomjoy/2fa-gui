@@ -8,9 +8,9 @@ Zainstaluj pyton 3.12 <https://www.python.org/ftp/python/3.12.2/python-3.12.2-am
 
 ```sh
 # Install modules
-phyton -m pip -m install tk
-phyton -m pip -m customtkinter
-phyton -m pip -m Pillow
+phyton3 -m pip -m install tk
+phyton3 -m pip -m customtkinter
+phyton3 -m pip -m Pillow
 ```
 
 ## Uruchom z Windows
@@ -58,6 +58,41 @@ self.scrollable_label_button_frame = ScrollableLabelButtonFrame(
 
 ```sh
 # Upgrade
-python -m pip install --upgrade SomePackage
-python -m pip install --upgrade pip
+python3 -m pip install --upgrade SomePackage
+python3 -m pip install --upgrade pip
+```
+
+## Debian 12 Install CustomTkinter
+
+Debian 12 vitrual environment
+
+```sh
+# Install
+sudo apt install python3-full python3-pip
+
+# Check Debian 12
+sudo which python3
+sudo python3 --version
+sudo pip3 --version
+
+# Create virtual env python3 Debian 12 
+sudo python3 -m venv ~/tutorial-venv
+
+# Run virtual env
+source tutorial-venv/bin/activate
+
+# Run install
+pip3 install customtkinter
+pip3 install Pillow
+
+# Or install
+sudo ~/tutorial-venv/bin/pip3 install Pillow
+sudo ~/tutorial-venv/bin/pip3 install customtkinter
+sudo ~/tutorial-venv/bin/pip3 install darkdetect
+
+# Run script
+python3 ~/tutorial-venv/main.py
+
+# Deactivate virtual env
+deactivate
 ```
