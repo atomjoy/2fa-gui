@@ -77,15 +77,15 @@ sudo apt install python3-full python3-venv python3-pip
 # Create .venv
 sudo python3 -m venv .venv
 
+# Run venv in vscode select main.py file window
+# Press Ctrl + Shift + p  Or F1 button then enter (or from vscode bottom bar):
+Python: Select Interpreter
+
 # Install project packages
 pip install customtkinter
 pip install Pillow
 pip install pyotp
 pip install tk
-
-# Run venv in vscode select main.py file window
-# Press Ctrl + Shift + p  Or F1 button then enter (or from vscode bottom bar):
-Python: Select Interpreter
 
 # Then run script from vscode integrated terminal
 python3 main.py
@@ -96,6 +96,12 @@ python3 main.py
 ```sh
 # Run virtual env from terminal
 source .venv/bin/activate
+
+# Install project packages
+pip install customtkinter
+pip install Pillow
+pip install pyotp
+pip install tk
 
 # Run script
 python3 main.py
