@@ -52,6 +52,7 @@ self.scrollable_label_button_frame = ScrollableLabelButtonFrame(
     label_text="Scrollable List Frame",    
     label_text_color=("#fff", "gray23"),
     label_anchor="w",
+)
 ```
 
 ### Update
