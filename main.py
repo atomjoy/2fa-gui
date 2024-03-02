@@ -1,3 +1,4 @@
+import tkinter
 import customtkinter
 import os, random, time, sys
 from PIL import Image
@@ -84,11 +85,16 @@ class ToplevelWindow(customtkinter.CTkToplevel):
         super().__init__(master, **kwargs)
         self.master = master
         self.command = command
-        # self.radiobutton_variable = customtkinter.StringVar()
+        # self.input_variable = customtkinter.StringVar()
         self.title('Add secret')
         self.geometry("480x360")
-        self.after(250, lambda: self.iconbitmap('images/icon.ico'))
-        self.grid_columnconfigure(0, weight=1) # Strech grid columns in frame
+        self.grid_columnconfigure(0, weight=1) # Strech grid columns in frame        
+        # Icon
+        if (sys.platform.startswith('win')):             
+            self.after(250, lambda: self.iconbitmap('images/icon.ico'))
+        else:                   
+            self.after(250, lambda: self.tk.call('wm', 'iconphoto', self._w, tkinter.PhotoImage('images/icon.gif')))
+
         # Error
         self.err = customtkinter.CTkLabel(self, text="", anchor="center", height=40)
         self.err.grid(row=0, column=0, padx=15, pady=5, sticky="ew")   
@@ -141,14 +147,20 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
+        self.current_dir = os.path.dirname(os.path.abspath(__file__))
+
         self.mode = True
         self.title("2FA Authentication")
-        self.iconbitmap('images/icon.ico')
         self.geometry("480x660")
         self.resizable(True, True) # width, height
         self.grid_rowconfigure(0, weight=1) # Strech grid 1st row horizontalyin in frame
         self.columnconfigure(2, weight=1) # Strech grid 3rd column verticaly in frame        
         self.toplevel_window = None
+        # Icon
+        if (sys.platform.startswith('win')): 
+            self.iconbitmap('images/icon.ico')
+        else:                        
+            self.tk.call('wm', 'iconphoto', self._w, tkinter.PhotoImage('images/icon.gif'))
 
         # create top bar
         self.topbar_frame = TopBarFrame(master=self, command=self.open_toplevel,)

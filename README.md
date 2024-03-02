@@ -8,7 +8,7 @@ Zainstaluj pyton 3.12 <https://www.python.org/ftp/python/3.12.2/python-3.12.2-am
 
 ```sh
 # Install modules
-phyton3 -m pip -m install tk
+phyton3 -m pip -m install tk, pyotp
 phyton3 -m pip -m customtkinter
 phyton3 -m pip -m Pillow
 ```
@@ -64,35 +64,42 @@ python3 -m pip install --upgrade pip
 
 ## Debian 12 Install CustomTkinter
 
-Debian 12 vitrual environment
+Debian 12 dodaj środowisko wirtualne w katalogu projektu.
+
+- <https://code.visualstudio.com/docs/python/environments#_creating-environments>
+
+### Instalacja .venv i pakietów
 
 ```sh
 # Install
-sudo apt install python3-full python3-pip
+sudo apt install python3-full python3-venv python3-pip
 
-# Check Debian 12
-sudo which python3
-sudo python3 --version
-sudo pip3 --version
+# Create .venv
+sudo python3 -m venv .venv
 
-# Create virtual env python3 Debian 12 
-sudo python3 -m venv ~/tutorial-venv
+# Install project packages
+pip install customtkinter
+pip install Pillow
+pip install pyotp
+pip install tk
 
-# Run virtual env
-source tutorial-venv/bin/activate
+# Run venv in vscode select main.py file window
+# Press Ctrl + Shift + p  Or F1 button then enter (or from vscode bottom bar):
+Python: Select Interpreter
 
-# Run install
-pip3 install customtkinter
-pip3 install Pillow
+# Then run script from vscode integrated terminal
+python3 main.py
+```
 
-# Or install
-sudo ~/tutorial-venv/bin/pip3 install Pillow
-sudo ~/tutorial-venv/bin/pip3 install customtkinter
-sudo ~/tutorial-venv/bin/pip3 install darkdetect
+### Lub uruchom z terminala
+
+```sh
+# Run virtual env from terminal
+source .venv/bin/activate
 
 # Run script
-python3 ~/tutorial-venv/main.py
+python3 main.py
 
-# Deactivate virtual env
+# Deactivate venv if no more needed
 deactivate
 ```
