@@ -8,9 +8,9 @@ Zainstaluj pyton 3.12 <https://www.python.org/ftp/python/3.12.2/python-3.12.2-am
 
 ```sh
 # Install modules
-phyton3 -m pip -m install tk, pyotp
-phyton3 -m pip -m customtkinter
-phyton3 -m pip -m Pillow
+phyton3 -m pip install tk, pyotp
+phyton3 -m pip install customtkinter
+phyton3 -m pip install Pillow
 ```
 
 ## Uruchom z Windows
