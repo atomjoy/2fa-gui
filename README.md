@@ -38,7 +38,7 @@ Customtkinter nie zmienia koloru tektu i anchora CTkScrollableFrame z json, trze
     "CTkScrollableFrame": {
         "label_fg_color": ["#55cc55", "gray23"],
         "label_text_color": ["#fff", "gray23"],
-        "label_anchor": ["w","w"]
+        "label_anchor": "w"
     },
 }
 ```
@@ -50,8 +50,8 @@ self.scrollable_label_button_frame = ScrollableLabelButtonFrame(
     master=self, width=300, command=self.label_button_frame_event, 
     corner_radius=5,
     label_text="Scrollable List Frame",    
-    label_text_color=["#fff", "gray23"],
-    label_anchor=["w", "w"],    
+    label_text_color=("#fff", "gray23"),
+    label_anchor="w",
 ```
 
 ### Update
