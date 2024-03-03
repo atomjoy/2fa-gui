@@ -19,7 +19,10 @@ class ScrollableLabelButtonFrame(customtkinter.CTkScrollableFrame):
         # self.radiobutton_variable = customtkinter.StringVar()
         self.label_list = []
         self.button_list = []
-        self.loadItems()
+        self.loadItems()        
+        # Linux event
+        self._parent_canvas.bind_all("<Button-4>", self.on_mousewheel_up)
+        self._parent_canvas.bind_all("<Button-5>", self.on_mousewheel_dn)
     
     def add_item(self, item, code="000000", color="#FFECAB", text_color="#222222", image=None):
         current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -79,6 +82,19 @@ class ScrollableLabelButtonFrame(customtkinter.CTkScrollableFrame):
         i = random.randint(0, 6)
         c = ["#FFECAB", "#FFDBDB", "#9CF3FF", "#CEC6FF", "#BAF4C5", "#BAE5F4", "#F7D7A0", "#FCCDCD", "#E2D2FE",]
         return str(c[nr])
+
+    def scrollY(self, y=1.0):
+        if y >= 0 and y <= 1.0:
+            self._parent_canvas.yview_moveto(y)
+
+    def on_mousewheel_dn(self, event):        
+        self._parent_canvas.yview_scroll(1, "units")
+    
+    def on_mousewheel_up(self, event):        
+        self._parent_canvas.yview_scroll(-1, "units")
+
+    def changeScrollbarButtonHoverColor(self, color='#0099ff'):
+        self.configure(scrollbar_button_hover_color=color)
 
 class ToplevelWindow(customtkinter.CTkToplevel):
     def __init__(self, master, command=None, **kwargs):
@@ -159,7 +175,7 @@ class App(customtkinter.CTk):
         # Icon
         if (sys.platform.startswith('win')): 
             self.iconbitmap('images/icon.ico')
-        else:                        
+        else:
             self.tk.call('wm', 'iconphoto', self._w, tkinter.PhotoImage('images/icon.gif'))
 
         # create top bar
@@ -175,6 +191,11 @@ class App(customtkinter.CTk):
             scrollbar_button_color=("#eaeaea", "#444444"))
         
         self.scrollable_label_button_frame.grid(row=0, column=2, padx=15, pady=15, sticky="nsew")        
+            
+    def screenSize(self):
+        width = self.winfo_screenwidth()            
+        height = self.winfo_screenheight()
+        return (width, height)
 
     def label_button_frame_event(self, item):
         print(f"Remove item clicked: {item}")
