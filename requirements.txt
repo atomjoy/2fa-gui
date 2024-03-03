@@ -1,0 +1,8 @@
+# Windows
+# Install python3 then in vscode terminal:
+# python -m venv .venv
+# pip install -r requirements.txt
+customtkinter==5.2.2
+Pillow==10.2.0
+pyotp==2.9.0
+tk==0.1.0
